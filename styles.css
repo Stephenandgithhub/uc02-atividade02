@@ -21,66 +21,140 @@ dd {
 }
 
 body {
-    width: 100%;
-    height: 100%;
-    background-color: rgb(39, 11, 11);
-    font-family: 'Times New Roman', Times, serif;
+  margin: 0 auto;
+  background: #261b20;
+  font-family: Poppins;
+  width: 65vw;
+  max-width: 65vw;
+  height: auto;
+  display: flex;
+  justify-content: center;
 }
-#grid {
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-    width: 800px;
-    height: 800px;
-    border-color: #dddddd;
-    display: flex;
-    flex-direction: column;
-    padding: 30px 50px;
+
+#root {
+  border-radius: 10px;
+  width: 60%;
+  height: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: red;
+  gap: 30px;
+  padding: 40px 60px;
+  overflow: auto;
+}
+
+h1 {
+  text-align: center;
+  font-size: bold;
+}
+
+#header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+}
+.start {
+  padding: 10px 20px;
+  background-color: green;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.start:hover {
+  background-color: white;
+  color: green;
+}
+
+.reset {
+  padding: 10px 20px;
+  background-color: green;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.reset:hover {
+  background-color: white;
+  color: green;
+}
+
+#timer {
+  padding: 5px 10px;
+  color: white;
+  border-radius: 5px;
+  margin: 20px auto;
+  background: black;
 }
 
 /*https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_grid_layout/Basic_concepts_of_grid_layout*/
-.cards {
-    display: grid;
-    grid-template-columns: repeat(4, 200px);
-    grid-template-rows: repeat(4, 200px);
-    gap: 5px;
-    background-color: blue;
-    
-}
-.card1, .card2, .card3, .card4, .card5, .card6, .card7, .card8, .card9, .card10, .card11, .card12, .card13, .card14, .card15, .card16, .card17, .card18 {
-    background-color: green;
-    border-radius: 5px;
-    border: 1px solid #000;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+
+#grid {
+  display: grid;
+  grid-template-columns: repeat(4, 180px);
+  grid-template-rows: repeat(4, 180px);
+  gap: 5px;
 }
 
-/**/
-.card1 img, .card2 img, .card3 img, .card4 img, .card5 img, .card6 img, .card7 img, .card8 img, .card9 img, .card10 img, .card11 img, .card12 img, .card13 img, .card14 img, .card15 img, .card16 img {
-    width: 200px;
-    height: 200px;
-    object-fit: cover;
+.card1,
+.card2,
+.card3,
+.card4,
+.card5,
+.card6,
+.card7,
+.card8,
+.card9,
+.card10,
+.card11,
+.card12,
+.card13,
+.card14,
+.card15,
+.card16,
+.card17,
+.card18 {
+  background-color: green;
+  border-radius: 5px;
+  border: 1px solid #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card1 img,
+.card2 img,
+.card3 img,
+.card4 img,
+.card5 img,
+.card6 img,
+.card7 img,
+.card8 img,
+.card9 img,
+.card10 img,
+.card11 img,
+.card12 img,
+.card13 img,
+.card14 img,
+.card15 img,
+.card16 img {
+  width: 180px;
+  height: auto;
+  object-fit: cover;
+  border-radius: 5px;
+  border: 1px solid #000;
 }
 .cardback {
-    display: grid;
-    grid-template-columns: repeat(4, 200px);
-    grid-template-rows: repeat(4, 200px);
-    gap: 5px;
+  display: grid;
+  grid-template-columns: repeat(4, 200px);
+  grid-template-rows: repeat(4, 250px);
+  gap: 5px;
 }
 
 .image1 {
-    border-radius: 5px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    object-fit: cover;
+  transform: rotateX(180deg);
 }
-button {
-    background-color: green;
-    border: 0;
-    padding: 10px 10px;
-    border-radius: 5px;
-    font-size: 12px;
-}
-
