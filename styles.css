@@ -20,141 +20,102 @@ dd {
   margin-block-end: 0;
 }
 
+@font-face {
+  font-family: "Squid Game";
+  src: url(./assets/Game\ Of\ Squids.ttf) format("truetype");
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url(./assets/Poppins-Regular.ttf) format("truetype");
+}
+
 body {
-  margin: 0 auto;
-  background: #261b20;
-  font-family: Poppins;
-  width: 65vw;
-  max-width: 65vw;
-  height: auto;
-  display: flex;
-  justify-content: center;
+  min-height: 100vh;
+  margin: 0;
+  background: radial-gradient(#ed1b76, #000000);
 }
 
-#root {
-  border-radius: 10px;
-  width: 60%;
-  height: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  background-color: red;
-  gap: 30px;
-  padding: 40px 60px;
-  overflow: auto;
-}
-
-h1 {
+.title {
+  color: #ffffff;
+  font-family: Squid Game;
   text-align: center;
-  font-size: bold;
+  font-size: 50px;
 }
 
-#header {
+.container {
+  margin: 50px;
   display: flex;
-  align-items: center;
+  flex-direction: column;
   justify-content: center;
-  gap: 30px;
+  align-items: center;
 }
-.start {
+
+.container-header {
+  color: #ffffff;
+  font-family: Poppins;
+  font-size: 20px;
+  display: flex;
+  column-gap: 100px;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+#start {
+  background-color:#ed1b76;
+  font-size: 20px;
   padding: 10px 20px;
-  background-color: green;
-  color: white;
-  border: none;
+  border: 1px solid #000;
   border-radius: 5px;
   cursor: pointer;
 }
 
-.start:hover {
-  background-color: white;
-  color: green;
+#start:hover {
+  background-color: #037a76;
 }
-
-.reset {
-  padding: 10px 20px;
-  background-color: green;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-.reset:hover {
-  background-color: white;
-  color: green;
-}
-
-#timer {
-  padding: 5px 10px;
-  color: white;
-  border-radius: 5px;
-  margin: 20px auto;
-  background: black;
-}
-
-/*https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_grid_layout/Basic_concepts_of_grid_layout*/
-
-#grid {
+.cards {
   display: grid;
-  grid-template-columns: repeat(4, 180px);
-  grid-template-rows: repeat(4, 180px);
-  gap: 5px;
+  grid-template-columns: repeat(4, auto);
+  grid-template-rows: repeat(4, auto);
+  gap: 10px;
+  align-items: center;
 }
 
-.card1,
-.card2,
-.card3,
-.card4,
-.card5,
-.card6,
-.card7,
-.card8,
-.card9,
-.card10,
-.card11,
-.card12,
-.card13,
-.card14,
-.card15,
-.card16,
-.card17,
-.card18 {
-  background-color: green;
-  border-radius: 5px;
+.card {
+  height: 175px;
+  width: 120px;
   border: 1px solid #000;
+  border-radius: 5px;
   display: flex;
   align-items: center;
   justify-content: center;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+}
+.card:active {
+  /*AAAAAA:https://marina-ferreira.github.io/tutorials/js/memory-game.pt-br/ */
+  transform: scale(0.97);
+  transition: transform. 2s;
+  transform: rotateY(180deg);
 }
 
-.card1 img,
-.card2 img,
-.card3 img,
-.card4 img,
-.card5 img,
-.card6 img,
-.card7 img,
-.card8 img,
-.card9 img,
-.card10 img,
-.card11 img,
-.card12 img,
-.card13 img,
-.card14 img,
-.card15 img,
-.card16 img {
-  width: 180px;
-  height: auto;
-  object-fit: cover;
-  border-radius: 5px;
+.card:hover {
+  cursor: pointer;
+}
+
+.gamecard {
+  height: 175px;
+  width: 120px;
   border: 1px solid #000;
-}
-.cardback {
-  display: grid;
-  grid-template-columns: repeat(4, 200px);
-  grid-template-rows: repeat(4, 250px);
-  gap: 5px;
+  border-radius: 5px;
+  position: absolute;
 }
 
-.image1 {
-  transform: rotateX(180deg);
+.frame1 {
+  height: 175px;
+  width: 120px;
+  border: 1px solid #000;
+  border-radius: 5px;
+  position: absolute;
 }
