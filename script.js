@@ -6,13 +6,22 @@ const timerShow = document.getElementById("time");
 const startButton = document.getElementById("start");
 let count = 0;
 let hasFlipped = false;
-let lockBoard = false; //(one card flip at a time - thank you ai)
+let lockBoard = false; //(self explanatory - thank you ai)
+let gameStart = false;
 let firstCard, secondCard;
 let matchedCards = 0;
 const totalCards = cards.length / 2;
 let timer;
 let seconds = 0;
-let gameStart = false;
+
+//function for cardeventlistener -> tired
+
+function eventCardListeners() {
+  cards.forEach((card) => {
+    card.removeEventListener("click", flipCard);
+    card.addEventListener("click", flipCard);
+  });
+}
 
 //apply timer
 
@@ -23,12 +32,23 @@ function statsTimer() {
   seconds++;
   const minutes = Math.floor(seconds / 60);
   const secs = seconds % 60;
-  timerShow.textContent = `TImer ${minutes}:${secs} secs`;
+  timerShow.textContent = `Timer ${String(minutes).padStart(2, "0")}:${String(
+    secs
+  ).padStart(2, "0")} secs`;
 }
 
 //apply if statements (equal = stays; else bye)
 
 function flipCard() {
+  //block if 'start' or lockboard = unpressed
+
+  if (!gameStart || lockBoard) {
+    if (!gameStart) {
+        alert("Please start the game first!😊");
+    }
+    return;
+  }
+
   this.classList.toggle("flipped");
   count++;
   flips.textContent = "Flips " + count;
@@ -40,7 +60,7 @@ function flipCard() {
   }
   secondCard = this;
   hasFlipped = false;
-
+  lockBoard = true;
   checkForMatch();
 }
 
@@ -57,10 +77,15 @@ function checkForMatch() {
       reset();
       //print("You won! 😊💐"); -> do not use print THIS ISNT C LANGUAGE!
     }
-    return;
-  } else {
-    firstCard.classList.remove("flipped");
-    secondCard.classList.remove("flipped");
+  else {
+    lockBoard = false;
+  }
+} else {
+    setTimeout(() => {
+        firstCard.classList.remove("flipped");
+        secondCard.classList.remove("flipped");
+        lockBoard = false;
+    }, 1000)
   }
 }
 function disableCards() {
@@ -74,20 +99,22 @@ function reset() {
   matchedCards = 0;
   flips.textContent = "Flips " + count;
   seconds = 0;
-  timerShow.textContent = "Timer 0:00 sec";
+  timerShow.textContent = "Timer 00:00 sec";
+  lockBoard = false;
+  gameStart = false;
+
+  eventCardListeners();
+
+  //apply flip action to cards -> nightmare (SPENT 30 MINS FIGURING - I FORGOT TO ADD CARDS FOR EACH 🤧)
+
+  cards.forEach((card) => {
+    card.classList.remove("flipped");
+  });
+
+  //apply shuffling
+
+  shuffleCards();
 }
-
-//apply flip action to cards -> nightmare (SPENT 30 MINS FIGURING - I FORGOT TO ADD CARDS FOR EACH 🤧)
-
-cards.forEach((card) => {
-  card.classList.remove("flipped");
-  card.addEventListener("click", flipCard);
-});
-
-//apply shuffling
-
-shuffleCards();
-gameStart = false;
 
 function shuffleCards() {
   cards.forEach((card) => {
@@ -97,9 +124,13 @@ function shuffleCards() {
 
 //starting timer; reset game
 startButton.addEventListener("click", function () {
-  if (timer) return;
-
+  if (gameStart) {
+    alert("The game is already in progress!⏳");
+    return;
+  }
   reset();
   gameStart = true;
   startTimer();
 });
+
+eventCardListeners();
